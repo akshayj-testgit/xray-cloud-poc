@@ -1,0 +1,115 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.xray.cloud</groupId>
+  <artifactId>xray.cloud.test</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>xray.cloud.test</name>
+  <description>xray.cloud.test</description>
+  
+  <properties>
+         
+        <!--XRay Properties -->
+  
+        <!--IN PROFILE ~.m2/settings.xml-->
+        <!--<xray.jiraURL></xray.jiraURL>
+        <xray.resultsFormat>JUNIT</xray.resultsFormat>
+        <xray.username>admin</xray.username>
+        <xray.password>123qwe</xray.password>-->
+  
+        <xray.projectKey>CALC</xray.projectKey>
+        <!--
+        <xray.testExecKey></xray.testExecKey>
+        <xray.testPlanKey></xray.testPlanKey>
+        <xray.testEnvironments></xray.testEnvironments>
+        <xray.revision></xray.revision>
+        -->
+  
+        <xray.surefire.location>${basedir}/target/surefire-reports</xray.surefire.location>
+        <!--End Xray Properties -->
+  
+    </properties>
+ 
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                  <!--   <debug>true</debug> -->
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+             
+            <plugin>
+ 
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version> 2.20.1</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore> 
+                    <suiteXmlFiles>
+                      <suiteXmlFile>testng.xml</suiteXmlFile>
+                    </suiteXmlFiles> 
+                    <properties>
+                        <property>
+                            <name>reporter</name>
+                            <value>org.testng.reporters.XMLReporter:generateTestResultAttributes=true,generateGroupsAttribute=true</value>
+                        </property>
+                    </properties>
+ 
+                </configuration>
+             </plugin>
+ 
+        </plugins>
+    </build>
+ 
+    <dependencies>
+        <dependency>
+          <groupId>org.testng</groupId>
+          <artifactId>testng</artifactId>
+          <version>6.11</version>
+          <scope>test</scope>
+        </dependency>
+ 
+     <!--    <dependency>
+                <groupId>com.xpandit.xray</groupId>
+                <artifactId>xray-maven-plugin</artifactId>
+                <version>1.0.0</version>
+                <scope>test</scope>
+        </dependency> -->
+    </dependencies>
+ 
+  <!--   <repositories>
+            <repository>
+                <id>xpandit</id>
+            <name>xpand-releases</name>
+            <url>http://maven.xpand-it.com/artifactory/releases</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+    </repositories> -->
+ 
+ 
+    <reporting>
+        <plugins>
+            <plugin>
+                <artifactId>maven-surefire-report-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>com.xpandit.xray</groupId>
+                <artifactId>xray-maven-plugin</artifactId>
+                <version>1.0.0</version>
+            </plugin>
+        </plugins>
+    </reporting>
+  
+     <pluginRepositories>
+        <pluginRepository>
+            <id>xpand-plugins</id>
+            <name>xpand-plugins</name>
+            <url>http://maven.xpand-it.com/artifactory/releases</url>
+        </pluginRepository>
+    </pluginRepositories>
+  
+</project>
